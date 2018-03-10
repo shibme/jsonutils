@@ -11,19 +11,20 @@ public final class JsonUtil {
     private Gson upperCamelCaseGson;
 
     public JsonUtil() {
-        gson = new Gson();
+        gson = new GsonBuilder().disableHtmlEscaping().create();
     }
 
     private Gson getPrettyGson() {
         if (null == prettyGson) {
-            prettyGson = new GsonBuilder().setPrettyPrinting().create();
+            prettyGson = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
         }
         return prettyGson;
     }
 
     private Gson getUpperCamelCaseGson() {
         if (null == upperCamelCaseGson) {
-            upperCamelCaseGson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).create();
+            upperCamelCaseGson = new GsonBuilder().disableHtmlEscaping()
+                    .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).create();
         }
         return upperCamelCaseGson;
     }
