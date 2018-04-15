@@ -3,6 +3,7 @@ package me.shib.java.lib.jsonconfig;
 import me.shib.java.lib.utils.JsonUtil;
 
 import java.io.*;
+import java.lang.reflect.Type;
 import java.util.HashMap;
 
 public final class JsonConfig {
@@ -38,6 +39,10 @@ public final class JsonConfig {
 
     public <T> T get(Class<T> classOfT) throws IOException {
         return jsonUtil.fromJson(readFromFile(), classOfT);
+    }
+
+    public <T> T get(Type typeOfT) throws IOException {
+        return jsonUtil.fromJson(readFromFile(), typeOfT);
     }
 
     private void writeToFile(String json) throws FileNotFoundException {

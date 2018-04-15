@@ -4,6 +4,8 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.lang.reflect.Type;
+
 public final class JsonUtil {
 
     private Gson gson;
@@ -31,6 +33,10 @@ public final class JsonUtil {
 
     public <T> T fromJson(String json, Class<T> classOfT) {
         return gson.fromJson(json, classOfT);
+    }
+
+    public <T> T fromJson(String json, Type typeOfT) {
+        return gson.fromJson(json, typeOfT);
     }
 
     public <T> T fromUpperCamelCaseJson(String json, Class<T> classOfT) {
