@@ -5,10 +5,11 @@ import me.shib.java.lib.utils.JsonUtil;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.util.HashMap;
+import java.util.Map;
 
 public final class JsonConfig {
 
-    private static HashMap<File, JsonConfig> configMap = new HashMap<>();
+    private static Map<String, JsonConfig> configMap = new HashMap<>();
     private static JsonUtil jsonUtil = new JsonUtil();
 
     private File file;
@@ -18,11 +19,17 @@ public final class JsonConfig {
     }
 
     public static synchronized JsonConfig getJsonConfig(File file) {
-        JsonConfig jsonConfig = configMap.get(file);
+        JsonConfig jsonConfig = configMap.get(file.getAbsolutePath());
         if (jsonConfig == null) {
             jsonConfig = new JsonConfig(file);
-            configMap.put(file, jsonConfig);
+            configMap.put(file.getAbsolutePath(), jsonConfig);
         }
+        return jsonConfig;
+    }
+
+    public static synchronized JsonConfig getNewJsonConfig(File file) {
+        JsonConfig jsonConfig = new JsonConfig(file);
+        configMap.put(file.getAbsolutePath(), jsonConfig);
         return jsonConfig;
     }
 
