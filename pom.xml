@@ -5,7 +5,7 @@
 
     <groupId>me.shib.java.lib</groupId>
     <artifactId>jsonutils</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
     <name>JSON Utils</name>
     <description>A simple set of JSON wrappers</description>
     <url>https://github.com/shibme/jsonutils</url>
